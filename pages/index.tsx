@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next'
 import { listContent } from '../components/content/content-loader'
 
-function JournalList ({ journalItems }) {
-  const journalList = journalItems.map((item) => {
+function ContentList ({ contentItems }) {
+  const contentList = contentItems.map((item) => {
     return (
       <li>
         <a href={item.slug}>{item.data.title}</a>
@@ -11,21 +11,25 @@ function JournalList ({ journalItems }) {
   })
 
   return (
-    <ul>{journalList}</ul>
+    <ul>{contentList}</ul>
   )
 }
 
-const Yarn: React.FC = ({ journalList }) => {
+interface JournalListProps {
+  contentList: []
+}
 
-  return <JournalList journalItems={journalList} />
+const JournalList: React.FC<JournalListProps> = ({ contentList }) => {
+
+  return <ContentList contentItems={contentList} />
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
 
-  const journalList = (await listContent("journal"))
+  const contentList = (await listContent("journal"))
 
-  return { props: { journalList } }
+  return { props: { contentList } }
 
 }
 
-export default Yarn
+export default JournalList
