@@ -6,7 +6,7 @@ import { serialize } from 'next-mdx-remote/serialize'
 
 interface JournalProps {
   source: MDXRemoteSerializeResult
-  frontMatter: {
+  frontmatter: {
     [key: string]: string
   }
 }
