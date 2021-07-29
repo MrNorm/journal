@@ -1,7 +1,8 @@
 import { GetStaticProps } from 'next'
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote'
-import { getContent, listContent } from '../../components/content/content-loader'
+import { getContent, listContent } from '../../components/content-loader'
 import { serialize } from 'next-mdx-remote/serialize'
+import Head from 'next/head'
 
 
 interface JournalProps {
@@ -15,6 +16,10 @@ const Journal: React.FC<JournalProps> = ({ source, frontmatter }) => {
 
   return (
     <div>
+      <Head>
+        <title>{frontmatter.title} - Oliver Northam</title>
+        <meta key='og:title' property='og:title' content={`${frontmatter.title} - Oliver Northam`} />
+      </Head>
       <MDXRemote {...source} />
     </div>
   )

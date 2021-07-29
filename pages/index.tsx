@@ -1,11 +1,12 @@
 import { GetStaticProps } from 'next'
-import { listContent } from '../components/content/content-loader'
+import Link from 'next/link'
+import { listContent } from '../components/content-loader'
 
 function ContentList ({ contentItems }) {
   const contentList = contentItems.map((item) => {
     return (
       <li>
-        <a href={item.slug}>{item.data.title}</a>
+        <Link href={item.slug}>{item.data.title}</Link>
       </li>
     )
   })
